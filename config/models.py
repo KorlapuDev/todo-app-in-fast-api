@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pymongo import MongoClient
 
 # creating a client
@@ -10,23 +12,21 @@ db = client['user']
 # Accessing the collection
 users_collection = db['users']
 
+current_date = datetime.now().isoformat()  # ISO 8601 format for better compatibility
+
 user_data = {
     "email": "nitin@gmail.com",
     "password": "nitin1372",
     "name": "Nitin",
     "occupation": "SDE-2",
-    "todo_list": {
-        "Learn Nextjs": [
-            "pending",
-            "dateCreated"
-        ],
-        "Learn ReactNative": [
-            "done",
-            "dateCreated"
-        ]
-    }
+    "todo_list": [
+        {
+            "task": "Learn Mongo Db",
+            "task_status": "pending",
+            "created_date": current_date,  # Assign current date
+        },
+    ]
 }
-
 
 # def add_task_to_db():
 #     # Find the user by email (assuming email is unique)
